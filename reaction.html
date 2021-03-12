@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Welcome to reaction.html</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <h2>Vyshnavi Tadipaneni reaction timer</h2>
+  <p id="target">Your Time </p>
+  <p id ="countDown">Count</p>
+
+  <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
+
+  <button type="button" class="btn btn-primary" onclick="recordReact()">React Now</button>
+  
+   
+  <script> 
+  var myTime=undefined;
+  function recordReact() {
+    myTime=Date.now()
+    console.log("Time : " + myTime);
+    return myTime
+  }
+  function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min); 
+      }
+
+  function startTime() {
+    var countdown = getRandomIntInclusive(2, 10);
+         console.log(countdown);
+
+      for (var i = 0; i < 4; i++) {
+
+        setTimeout(function (i) {
+          document.getElementById("countDown").innerHTML = i
+        }, (((4 - 1) - i) * 1000), i);
+  }
+  setTimeout(function (i) {
+        console.log(i)
+        if (myTime == undefined) {
+          document.getElementById("target").innerHTML = "Too Slow"
+          document.getElementById("react").classList.add("btn-dark");
+          document.getElementById("react").classList.remove("btn-success");
+        }
+        else {
+          var buttonTime = Date.now();
+          var elapsedTime = buttonTime - myTime;
+          document.getElementById("target").innerHTML = "Time was " + elapsedTime;
+          document.getElementById("react").classList.add("btn-primary");
+          document.getElementById("react").classList.remove("btn-success");
+        }
+      }, (4 - 1)*1000)
+    }
+  </script>
+
+</body>
+</html>

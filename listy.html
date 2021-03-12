@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Welcome to listy.html</title>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: red;
+        }
+        
+        .flex-container>div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+        
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: green;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Vyshnavi Tadipaneni builds a list</h1>
+    <input type="text" id="text" name="form1_text"> <br><br>
+
+    <div class="flex-container" id="target">
+        <div class="listy"> item 1</div>
+        <div class="listy"> item 2</div>
+        <div class="listy"> item 3</div>
+    </div>
+
+    <p> Press the button to create an new element of type div and then add it to the container.
+    </p>
+    <button onclick="makeNewDiv()">Add one</button>
+
+
+</body>
+<script>
+    function makeNewDiv() {
+        const element = document.createElement("div");
+        element.innerHTML = document.getElementById("text").value;
+        element.setAttribute('class', 'listy');
+        element.style.color = "orange"
+        var i;
+        var listyItems = document.getElementsByClassName("listy");
+        len = listyItems.length;
+        var r = 0;
+        if (len > 8) {
+            for (var k = 0; k < 8; k++) {
+                if (listyItems[k].innerHTML == element.innerHTML) {
+                    listyItems[k].remove();
+                    console.log("We are removing duplicates");
+                    r = 1;
+                    break;
+                }
+            }
+            if (r == 0) {
+                i = Math.floor((Math.random() * 9) + 0);
+                listyItems[i].remove();
+            }
+        }
+        document.getElementById('target').appendChild(element)
+
+    }
+    function getRandomIntInclusive(min, max){
+        min = Math.celi(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min +1)+ min);
+    }
+</script>
+
+</html>
